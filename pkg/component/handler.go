@@ -2,10 +2,11 @@ package component
 
 import (
 	"fmt"
-	"github.com/yuedun/ginode/db"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/yuedun/ginode/db"
 
 	"github.com/gin-gonic/gin"
 )

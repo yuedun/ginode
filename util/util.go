@@ -4,8 +4,9 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
-	yaml "gopkg.in/yaml.v3"
 	"io/ioutil"
+
+	yaml "gopkg.in/yaml.v3"
 )
 
 //profile variables

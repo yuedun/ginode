@@ -2,6 +2,7 @@ package user
 
 import (
 	"fmt"
+
 	"github.com/jinzhu/gorm"
 )
 

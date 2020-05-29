@@ -2,6 +2,7 @@ package post
 
 import (
 	"fmt"
+
 	"github.com/jinzhu/gorm"
 )
 

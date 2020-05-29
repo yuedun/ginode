@@ -1,15 +1,17 @@
 package tests
 
 import (
+	"testing"
+
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/yuedun/ginode/db"
 	"github.com/yuedun/ginode/pkg/user"
-	"testing"
 )
 
 func TestGetUser(t *testing.T) {
 	userService := user.NewService(db.Mysql)
-	user, err := userService.GetUserInfo(1)
+	userObj := user.User{Id: 1}
+	user, err := userService.GetUserInfo(userObj)
 	if err != nil {
 		t.Error(err)
 	}
