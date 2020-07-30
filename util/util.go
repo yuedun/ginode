@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io/ioutil"
+	"log"
 
 	yaml "gopkg.in/yaml.v3"
 )
@@ -17,16 +18,18 @@ type Conf struct {
 	Dbname string `yaml:"dbname"`
 }
 
-func (c *Conf) GetConf() *Conf {
-	yamlFile, err := ioutil.ReadFile("conf.yaml")
+func (c *Conf) GetConf(filename string) (config *Conf, err error) {
+	yamlFile, err := ioutil.ReadFile(filename)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err)
+		return nil, err
 	}
 	err = yaml.Unmarshal(yamlFile, c)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err)
+		return nil, err
 	}
-	return c
+	return c, nil
 }
 
 /**

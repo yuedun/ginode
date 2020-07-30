@@ -11,7 +11,7 @@ type Component struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 }
 
-// 设置User的表名为`website`
+// 设置Component的表名为`component`
 func (Component) TableName() string {
 	return "component"
 }
