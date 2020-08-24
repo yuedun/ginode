@@ -18,12 +18,13 @@ type Conf struct {
 	Dbname string `yaml:"dbname"`
 }
 
-func (c *Conf) GetConf(filename string) (config *Conf, err error) {
+func GetConf(filename string) (*Conf, error) {
 	yamlFile, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Println(err)
 		return nil, err
 	}
+	var c = new(Conf)
 	err = yaml.Unmarshal(yamlFile, c)
 	if err != nil {
 		log.Println(err)

@@ -15,8 +15,7 @@ import (
 
 func init() {
 	var err error
-	conf := util.Conf{}
-	c, _ := conf.GetConf("conf.yaml")
+	c, _ := util.GetConf("conf.yaml")
 	db.Mysql, err = gorm.Open("mysql", fmt.Sprintf("%v:%v@/%v?charset=utf8&parseTime=True&loc=Local", c.User, c.Pwd, c.Dbname))
 	if err != nil {
 		panic(err)
