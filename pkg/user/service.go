@@ -92,6 +92,5 @@ func (u *newUserService) GetUserInfo(userObj User) (user User, err error) {
 	if err != nil {
 		return user, err
 	}
-	fmt.Println("新方法")
 	return user, nil
 }

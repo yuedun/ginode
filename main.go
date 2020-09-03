@@ -17,13 +17,11 @@ func init() {
 	var err error
 	c, _ := util.GetConf("conf.yaml")
 	db.Mysql, err = gorm.Open(mysql.Open(fmt.Sprintf("%v:%v@tcp(%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", c.User, c.Pwd, c.Host, c.Dbname)), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info),
+		Logger: logger.Default.LogMode(logger.Info), // SQL日志
 	})
 	if err != nil {
 		panic(err)
 	}
-	//Db.SingularTable(true) // 如果设置为true,`User`的默认表名为`user`,使用`TableName`设置的表名不受影响
-	//defer Db.Close()
 }
 
 func main() {
