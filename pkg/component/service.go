@@ -1,12 +1,12 @@
 package component
 
 import (
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type (
 	ComponentService interface {
-		GetComponentList(offset, limit int, search Component) (component []Component, count int, err error)
+		GetComponentList(offset, limit int, search Component) (component []Component, count int64, err error)
 		CreateComponent(component *Component) (err error)
 		UpdateComponent(component *Component) (err error)
 		DeleteComponent(componentID int) (err error)
@@ -22,7 +22,7 @@ func NewService(mysql *gorm.DB) ComponentService {
 	}
 }
 
-func (u *componentService) GetComponentList(offset, limit int, search Component) (components []Component, count int, err error) {
+func (u *componentService) GetComponentList(offset, limit int, search Component) (components []Component, count int64, err error) {
 	if search.Name != "" {
 		u.mysql = u.mysql.Where("name LIKE ?", search.Name+"%")
 	}
@@ -43,7 +43,7 @@ func (u *componentService) CreateComponent(component *Component) (err error) {
 }
 
 func (u *componentService) UpdateComponent(component *Component) (err error) {
-	err = u.mysql.Model(component).Update(component).Error
+	err = u.mysql.Model(component).Updates(component).Error
 	if err != nil {
 		return err
 	}

@@ -3,12 +3,12 @@ package website
 import (
 	"fmt"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type (
 	WebsiteService interface {
-		GetWebsiteList(offset, limit int, search Website) (website []Website, count int, err error)
+		GetWebsiteList(offset, limit int, search Website) (website []Website, count int64, err error)
 		CreateWebsite(website *Website) (err error)
 		UpdateWebsite(website *Website) (err error)
 		DeleteWebsite(websiteID int) (err error)
@@ -24,7 +24,7 @@ func NewService(mysql *gorm.DB) WebsiteService {
 	}
 }
 
-func (u *websiteService) GetWebsiteList(offset, limit int, search Website) (websites []Website, count int, err error) {
+func (u *websiteService) GetWebsiteList(offset, limit int, search Website) (websites []Website, count int64, err error) {
 	if search.Name != "" {
 		u.mysql = u.mysql.Where("name LIKE ?", search.Name+"%")
 	}
@@ -46,7 +46,7 @@ func (u *websiteService) CreateWebsite(website *Website) (err error) {
 }
 
 func (u *websiteService) UpdateWebsite(website *Website) (err error) {
-	err = u.mysql.Model(website).Update(website).Error
+	err = u.mysql.Model(website).Updates(website).Error
 	if err != nil {
 		return err
 	}

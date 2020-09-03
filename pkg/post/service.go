@@ -3,7 +3,7 @@ package post
 import (
 	"fmt"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type (
@@ -51,7 +51,7 @@ func (u *postService) CreatePost(post *Post) (err error) {
 }
 
 func (u *postService) UpdatePost(userID int, post *Post) (err error) {
-	err = u.mysql.Model(post).Where("id = ?", userID).Update(post).Error
+	err = u.mysql.Model(post).Where("id = ?", userID).Updates(post).Error
 	if err != nil {
 		return err
 	}

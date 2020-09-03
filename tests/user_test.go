@@ -3,7 +3,6 @@ package tests
 import (
 	"testing"
 
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/yuedun/ginode/db"
 	"github.com/yuedun/ginode/pkg/user"
 )

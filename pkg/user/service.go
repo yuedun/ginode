@@ -3,7 +3,7 @@ package user
 import (
 	"fmt"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type (
@@ -57,7 +57,7 @@ func (u *userService) CreateUser(user *User) (err error) {
 }
 
 func (u *userService) UpdateUser(userID int, user *User) (err error) {
-	err = u.mysql.Model(user).Where("id = ?", userID).Update(user).Error
+	err = u.mysql.Model(user).Where("id = ?", userID).Updates(user).Error
 	if err != nil {
 		return err
 	}
