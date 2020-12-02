@@ -12,6 +12,7 @@ import (
 	"gorm.io/gorm/logger"
 )
 
+//！！！！重要作用，用于初始化数据库
 func TestMain(m *testing.M) {
 	fmt.Println("begin")
 	var err error
@@ -25,7 +26,6 @@ func TestMain(m *testing.M) {
 	m.Run()
 	fmt.Println("end")
 }
-
 func TestGetUser(t *testing.T) {
 	userService := user.NewService(db.Mysql)
 	userObj := user.User{Id: 1}
