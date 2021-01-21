@@ -3,7 +3,7 @@ package component
 import "time"
 
 type Component struct {
-	Id        int       `json:"id"`
+	ID        int       `json:"id"`
 	Name      string    `json:"name"`
 	Category  string    `json:"category"`
 	Status    int       `json:"status"`

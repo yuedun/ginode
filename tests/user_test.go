@@ -17,7 +17,7 @@ func TestMain(m *testing.M) {
 	fmt.Println("begin")
 	var err error
 	c, _ := util.GetConf("../conf.yaml")
-	db.Mysql, err = gorm.Open(mysql.Open(fmt.Sprintf("%v:%v@tcp(%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", c.User, c.Pwd, c.Host, c.Dbname)), &gorm.Config{
+	db.Mysql, err = gorm.Open(mysql.Open(c.MysqlURL), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {
@@ -28,7 +28,7 @@ func TestMain(m *testing.M) {
 }
 func TestGetUser(t *testing.T) {
 	userService := user.NewService(db.Mysql)
-	userObj := user.User{Id: 1}
+	userObj := user.User{ID: 1}
 	user, err := userService.GetUserInfo(userObj)
 	if err != nil {
 		t.Error(err)

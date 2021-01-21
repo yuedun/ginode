@@ -1,4 +1,1 @@
-host: localhost:3306
-user: root
-pwd: root
-dbname: website
+mysqlurl: root:root@tcp(localhost:3306)/website?charset=utf8mb4&parseTime=True&loc=Local

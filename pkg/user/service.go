@@ -40,7 +40,7 @@ func (u *userService) GetUserInfo(userObj User) (user User, err error) {
 }
 
 func (u *userService) GetUserInfoBySQL() (user User, err error) {
-	err = u.mysql.Raw("select * from user where id=?", user.Id).Scan(&user).Error
+	err = u.mysql.Raw("select * from user where id=?", user.ID).Scan(&user).Error
 	if err != nil {
 		return user, err
 	}

@@ -37,7 +37,7 @@ func GetUserInfo(c *gin.Context) {
 	mobile := c.Param("mobile")
 	userService := NewUserService(db.Mysql)
 	userObj := User{
-		Id:       userID,
+		ID:       userID,
 		UserName: username,
 		Mobile:   mobile,
 	}

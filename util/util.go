@@ -12,10 +12,7 @@ import (
 
 //profile variables
 type Conf struct {
-	Host   string `yaml:"host"`
-	User   string `yaml:"user"`
-	Pwd    string `yaml:"pwd"`
-	Dbname string `yaml:"dbname"`
+	MysqlURL string `yaml:mysqlURL`
 }
 
 func GetConf(filename string) (*Conf, error) {

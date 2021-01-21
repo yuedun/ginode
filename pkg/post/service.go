@@ -34,7 +34,7 @@ func (u *postService) GetPostInfo() (post Post, err error) {
 }
 
 func (u *postService) GetPostInfoBySQL() (post Post, err error) {
-	err = u.mysql.Raw("select * from post where id=?", post.Id).Scan(&post).Error
+	err = u.mysql.Raw("select * from post where id=?", post.ID).Scan(&post).Error
 	if err != nil {
 		return post, err
 	}
