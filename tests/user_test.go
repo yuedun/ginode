@@ -28,7 +28,7 @@ func TestMain(m *testing.M) {
 }
 func TestGetUser(t *testing.T) {
 	userService := user.NewService(db.Mysql)
-	userObj := user.User{ID: 1}
+	userObj := user.User{UserName: "月盾"}
 	user, err := userService.GetUserInfo(userObj)
 	if err != nil {
 		t.Error(err)
@@ -39,7 +39,8 @@ func TestGetUser(t *testing.T) {
 func TestCreateUser(t *testing.T) {
 	userService := user.NewService(db.Mysql)
 	newUser := new(user.User)
-	newUser.Mobile = "17864345978"
+	newUser.Mobile = "13333333333"
+	newUser.UserName = "月盾"
 	err := userService.CreateUser(newUser)
 	if err != nil {
 		t.Error(err)

@@ -31,8 +31,8 @@ func NewService(mysql *gorm.DB) UserService {
 	}
 }
 
-func (u *userService) GetUserInfo(userObj User) (user User, err error) {
-	err = u.mysql.Where(userObj).Find(&user).Error
+func (u *userService) GetUserInfo(search User) (user User, err error) {
+	err = u.mysql.Where("user_name = ?", "月盾").Order("id desc").Find(&user).Error
 	if err != nil {
 		return user, err
 	}
@@ -40,7 +40,8 @@ func (u *userService) GetUserInfo(userObj User) (user User, err error) {
 }
 
 func (u *userService) GetUserInfoBySQL() (user User, err error) {
-	err = u.mysql.Raw("select * from user where id=?", user.ID).Scan(&user).Error
+	user.UserName = "月盾"
+	err = u.mysql.Raw("select * from user where id=?", 1).Scan(&user).Error
 	if err != nil {
 		return user, err
 	}
