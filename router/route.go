@@ -5,6 +5,7 @@ import (
 	"github.com/yuedun/ginode/middleware"
 	"github.com/yuedun/ginode/pkg/component"
 	"github.com/yuedun/ginode/pkg/post"
+	"github.com/yuedun/ginode/pkg/shortUrl"
 	"github.com/yuedun/ginode/pkg/user"
 	"github.com/yuedun/ginode/pkg/website"
 )
@@ -55,5 +56,11 @@ func Register(router *gin.Engine) {
 		postRouter.POST("/", post.CreatePost)
 		postRouter.PUT("/:id", post.UpdatePost)
 		postRouter.DELETE("/:id", post.DeletePost)
+	}
+	//短链路由注册
+	shortRouter := router.Group("/l2s")
+	{
+		shortRouter.GET("/long2short", shortUrl.Long2Short)
+		shortRouter.GET("/short2long", shortUrl.GetLongByShort)
 	}
 }
