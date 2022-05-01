@@ -57,9 +57,9 @@ func (this *shortURLService) generateShortUrl(req *Long2ShortRequest, hashcode s
 	if result.Error != nil {
 		return "", err
 	}
-	// 0-9a-zA-Z 六十二进制
+	// 0-9a-zA-Z 六十二进制（base62）
 	insertId := shortRecord.ID
-	// mysqldb _id不能转换成int64，此处需要使用mysql自增id实现，或使用自定义mysqldb 自增id
+	// mongodb的_id不能转换成int64，此处需要使用mysql自增id实现，或使用自定义mysqldb 自增id
 	shortUrlTrans := this.transTo62(int64(insertId))
 	this.mysql.First(&shortRecord)
 	shortRecord.ShortUrl = shortUrlTrans
