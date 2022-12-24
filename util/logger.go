@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"os"
@@ -10,9 +10,9 @@ import (
 )
 
 // https://www.bilibili.com/read/cv18134162/
-var sugarLogger *zap.SugaredLogger
+var SugarLogger *zap.SugaredLogger
 
-func initLogger() {
+func InitLogger() {
 	// 写入位置
 	writeSyncer := getLogWriter()
 	// 编码格式
@@ -22,7 +22,7 @@ func initLogger() {
 	// 使用zap.New(…)方法来手动传递所有配置
 	// 增加 Caller 信息
 	logger := zap.New(core, zap.AddCaller())
-	sugarLogger = logger.Sugar()
+	SugarLogger = logger.Sugar()
 }
 
 // 自定义日志格式
@@ -38,7 +38,7 @@ func getEncoder() zapcore.Encoder {
 // 在zap中加入Lumberjack支持
 func getLogWriter() []zapcore.WriteSyncer {
 	lumberJackLogger := &lumberjack.Logger{
-		Filename:   "logs/accord-admin-b.log",
+		Filename:   "logs/ginode.log",
 		MaxSize:    128,   // 以 MB 为单位
 		MaxBackups: 5,     // 在进行切割之前，日志文件的最大大小（以MB为单位）
 		MaxAge:     15,    // 保留旧文件的最大天数

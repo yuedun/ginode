@@ -4,19 +4,19 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
-	"io/ioutil"
 	"log"
+	"os"
 
 	yaml "gopkg.in/yaml.v3"
 )
 
-//profile variables
+// profile variables
 type Conf struct {
-	MysqlURL string `yaml:mysqlURL`
+	MysqlURL string `yaml:"mysqlURL"`
 }
 
 func GetConf(filename string) (*Conf, error) {
-	yamlFile, err := ioutil.ReadFile(filename)
+	yamlFile, err := os.ReadFile(filename)
 	if err != nil {
 		log.Println(err)
 		return nil, err
